@@ -18,7 +18,7 @@ python setup.py install
 
 ## Usage
 ```bash
-python topo_discovery.py --isp_name <isp_name> --isp_ip <isp_ip> --router_ip <router_ip> --router_user <router_user> --router_pass <router_pass> --router_port <router_port>
+python topo_discovery.py --isp_name <isp_name> --router_ip <router_ip> --router_user <router_user> --router_pass <router_pass> --router_port <router_port>
 
 python topo_links --isp_name <isp_name>
 ``` 
