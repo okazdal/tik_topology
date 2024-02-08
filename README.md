@@ -23,9 +23,9 @@ python topo_discovery.py --isp_name <isp_name> --router_ip <router_ip> --router_
 python topo_links.py --isp_name <isp_name>
 ``` 
 
-First Command will discover the network topology and store it in a file named `isp_name`.csv. 
+- First Command will discover the network topology and store it in a file named `isp_name`.csv. 
 
-Router port parameter is the port used for api ssl service. 
+- Router port parameter is the port used for api ssl service. 
 
-Second command will draw the topology and store it in a file named `isp_name`.html.
+- Second command will draw the topology and store it in a file named `isp_name`.html.
 You can find these files under topos folder.
