@@ -9,6 +9,7 @@ pyvis = "*"
 pydantic = "*"
 setuptools = "*"
 matplotlib = "*"
+scipy = "*"
 
 [dev-packages]
 
