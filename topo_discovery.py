@@ -17,10 +17,16 @@ class Neighbor(BaseModel):
     board: str
     
 
-def get_romon_discovery(router_ip, router_user, router_pass, router_port):
-    connection = routeros_api.RouterOsApiPool(router_ip, username=router_user, port=int(router_port),
-                                          password=router_pass, use_ssl=True, ssl_verify=False,
+def get_romon_discovery(router_ip, router_user, router_pass, router_port, insecure='no'):
+    if insecure == 'yes':
+        connection = routeros_api.RouterOsApiPool(router_ip, username=router_user, port=int(router_port),
+                                          password=router_pass, use_ssl=False, ssl_verify=False,
                                           plaintext_login=True)
+    else:  
+        connection = routeros_api.RouterOsApiPool(router_ip, username=router_user, port=int(router_port),
+                                            password=router_pass, use_ssl=True, ssl_verify=False,
+                                            plaintext_login=True)
+        
     api = connection.get_api()
     resp = api.get_binary_resource('/').call('tool/romon/discover', {'duration': '20'})
 
@@ -85,6 +91,7 @@ def main():
     parser.add_argument('--router_port', type=str, required=True, default='8729')
     parser.add_argument('--router_user', type=str, required=True, default='admin')
     parser.add_argument('--router_pass', type=str, required=True, default='')
+    parser.add_argument('--insecure', type=str, required=False, default='no')
     args = parser.parse_args()
 
     ISP_NAME = args.isp_name
@@ -92,8 +99,9 @@ def main():
     router_user = args.router_user
     router_pass = args.router_pass
     router_port = args.router_port
+    insecure = args.insecure
     
-    neighbors = get_romon_discovery(router_ip, router_user, router_pass, router_port)
+    neighbors = get_romon_discovery(router_ip, router_user, router_pass, router_port, insecure)
 
     # Create 'topos' directory if it doesn't exist
     if not os.path.exists('topos'):

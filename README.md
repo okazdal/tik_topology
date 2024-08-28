@@ -29,3 +29,6 @@ python topo_links.py --isp_name <isp_name>
 
 - Second command will draw the topology and store it in a file named `isp_name`.html.
 You can find these files under topos folder.
+
+
+- If you run into ssl errors, you can use '--insecure yes' which will use api service instead of api-ssl
